@@ -1,0 +1,123 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Distribution / Packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+pip-wheel-metadata/
+wheels/
+
+# ========================
+# Environment Files
+# ========================
+.env
+.env.*
+*.env.local
+*.env.production
+
+# ========================
+# Jupyter Notebooks
+# ========================
+.ipynb_checkpoints/
+
+# ========================
+# IDEs and Editors
+# ========================
+.vscode/
+.idea/
+*.swp
+*~
+
+# ========================
+# Logs and Debugging
+# ========================
+logs/
+*.log
+*.out
+*.err
+debug.log
+
+# ========================
+# Docker
+# ========================
+docker-compose.override.yml
+*.dockerfile
+
+# ========================
+# Dependency Management
+# ========================
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# ========================
+# AI/ML Models and Outputs
+# ========================
+checkpoints/
+*.ckpt
+*.h5
+*.pt
+model_outputs/
+*.onnx
+
+# ========================
+# Cache and Temporary Files
+# ========================
+.cache/
+*.tmp
+*.bak
+*.old
+
+# ========================
+# Testing
+# ========================
+.coverage
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.pytest_cache/
+htmlcov/
+
+# ========================
+# OS Generated Files
+# ========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ========================
+# Ansible, Terraform, and Kubernetes
+# ========================
+*.tfstate
+*.tfstate.backup
+*.kube/
+ansible.log
+
+# ========================
+# Git Ignore Self Reference
+# ========================
+!.gitignore
