@@ -16,8 +16,7 @@ if uploaded_file:
     df = pd.read_csv(uploaded_file)
     st.subheader("📦 Current Inventory")
     st.dataframe(df)
-st.divider()
-st.subheader("🤖 Ask your inventory  question")
+st.subheader("Ask your inventory question")
 
 question = st.text_input("What do you want to know about this inventory?")
 
@@ -34,47 +33,11 @@ Answer this question clearly and concisely:
 {question}
 """
 
-   with st.spinner("Analyzing inventory..."):
-       response = openai.responses.create(
-           mode1="gpt-4.1-mini",
-           input=prompt
-        )
-
-        answer = response.output_text
-        st.success(answer)
-
-{df.head(50).to_csv(index=False)}
-
-Question: {user_question}
-"""
-
-    with st.spinner("Thinking..."):
-        response = client.responses.create(
+    with st.spinner("Analyzing inventory..."):
+        response = openai.responses.create(
             model="gpt-4.1-mini",
             input=prompt
         )
 
         answer = response.output_text
         st.success(answer)
-    user_query = st.text_input("Ask your inventory question:")
-
-    if user_query:
-        inventory_summary = df.head(20).to_string()
-
-        prompt = f"""
-        You are an AI inventory optimization analyst for a grocery frozen foods department.
-        Inventory snapshot:
-        {inventory_summary}
-
-        Question: {user_query}
-        """
-
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        st.markdown("### 🤖 AI Response")
-        st.write(response.choices[0].message.content)
-else:
-    st.info("Upload a CSV inventory file to begin.")
