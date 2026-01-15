@@ -2,10 +2,9 @@ import streamlit as st
 import pandas as pd
 from dotenv import load_dotenv
 import os
-from openai import OpenAi
+import openai
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 st.set_page_config(page_title="AI Inventory Chatbot", layout="wide")
 st.title("🧊 AI Inventory Chatbot – Frozen Foods Ops")
@@ -18,15 +17,31 @@ if uploaded_file:
     st.subheader("📦 Current Inventory")
     st.dataframe(df)
 st.divider()
-st.subheader("🤖 Ask your inventory a question")
+st.subheader("🤖 Ask your inventory  question")
 
-user_question = st.text_input("Ask your inventory question:")
+question = st.text_input("What do you want to know about this inventory?")
 
-if user_question and uploaded_file is not None:
+if question and uploaded_file:
+    inventory_preview = df.head(50).to_csv(index=False)
+
     prompt = f"""
-You are an inventory assistant for a frozen foods department.
+You are an inventory operations analyst for a frozen foods department.
 
-Here is the inventory data:
+Here is the current inventory CSV preview:
+{inventory_preview}
+
+Answer this question clearly and concisely:
+{question}
+"""
+
+   with st.spinner("Analyzing inventory..."):
+       response = openai.responses.create(
+           mode1="gpt-4.1-mini",
+           input=prompt
+        )
+
+        answer = response.output_text
+        st.success(answer)
 
 {df.head(50).to_csv(index=False)}
 
